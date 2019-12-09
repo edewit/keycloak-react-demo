@@ -1,9 +1,9 @@
 import { createContext, useContext } from 'react';
-import Keycloak from 'keycloak-js';
+import { KeycloakInstance } from "keycloak-js";
 
-export const KeycloakContext = createContext<Keycloak.KeycloakInstance<'native'> | undefined>(undefined);
+export const KeycloakContext = createContext<KeycloakInstance<'native'> | undefined>(undefined);
 
-export function useKeycloak(): Keycloak.KeycloakInstance<'native'> {
+export function useKeycloak(): KeycloakInstance<'native'> {
   const context = useContext(KeycloakContext);
   if (!context) {
     throw new Error('keycloak must be initialised');
