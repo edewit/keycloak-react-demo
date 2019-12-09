@@ -1,25 +1,16 @@
 import React from 'react';
-import { LegumeLoader } from './Loader';
+import { LegumeLoader } from './ListLoader';
 import { Legume } from './types';
+import { Title } from '@patternfly/react-core';
+import { FruitDataList } from './FruitList';
 
 export default function LegumeList() {
   return (
     <div>
-      <h3>Legume List</h3>
-      <div className="row">
-        <div className="col-4">Name</div>
-        <div className="col-8">Description</div>
-      </div>
+      <Title headingLevel="h1" size="lg">Legumes List</Title>
       <LegumeLoader>
         {(legumes: Legume[]) => (
-          legumes.map((legume, i) => {
-            return (
-              <div className="row" key={i}>
-                <div className="col-4">{legume.name}</div>
-                <div className="col-8">{legume.description}</div>
-              </div>
-            );
-          })
+          <FruitDataList fetchedFruits={legumes} />
         )}
       </LegumeLoader>
     </div>
