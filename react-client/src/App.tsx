@@ -1,12 +1,24 @@
 import '@patternfly/react-core/dist/styles/base.css';
 import React, { useState } from 'react';
 import { Nav, NavItem, NavList } from '@patternfly/react-core';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch, Redirect } from 'react-router-dom';
 import FruitList from './FruitList';
 import LegumeList from './LegumeList';
 import FruitForm from './FruitForm';
 import Welcome from './Welcome';
 import { Layout } from './layout';
+
+export function getRequestedRoute(): string | undefined {
+  const search = window.location.search;
+  if (!search) {
+    return;
+  }
+  const requestedRoute = new URLSearchParams(window.location.search).get('route');
+  if (requestedRoute) {
+    return requestedRoute;
+  }
+  return;
+}
 
 function App() {
   const [active, setActive] = useState(0);
@@ -28,6 +40,8 @@ function App() {
       </NavList>
     </Nav>
   );
+
+  const requestedRoute = getRequestedRoute();
   return (
     <Layout pageNav={PageNav}>
       <Switch>
@@ -44,6 +58,7 @@ function App() {
           <Welcome />
         </Route>
       </Switch>
+      {requestedRoute && <Redirect to={'/' + requestedRoute} />}
     </Layout>
   );
 }
