@@ -12,6 +12,7 @@ describe('<FruitLoader />', () => {
     ];
     const mockJsonPromise = Promise.resolve(mockSuccessResponse);
     const mockFetchPromise = Promise.resolve({
+      ok: true,
       json: () => mockJsonPromise,
     });
     jest.spyOn(global as any, 'fetch').mockImplementation(() => mockFetchPromise);
