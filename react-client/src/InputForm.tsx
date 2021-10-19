@@ -7,7 +7,7 @@ interface FormProps {
 };
 
 export const InputForm: FunctionComponent<FormProps> = (props) => {
-  const DEFAULT_VALUE = { name: '', description: '' } as Fruit;
+  const DEFAULT_VALUE: Fruit = { name: '', description: '' };
   const [inputs, setInputs] = useState(DEFAULT_VALUE);
   const handleSubmit = (event: FormEvent) => {
     if (event) {

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Spinner } from '@patternfly/react-core';
 import style from './DataLoader.module.scss';
 
 export function DataLoader<T>(props: { loader: () => Promise<T>, deps?: any[], children: ((arg: T) => any) | React.ReactNode }) {
   const [data, setData] = useState<{ result: T } | undefined>(undefined);
-  const [error, setError] = useState();
+  const [error, setError] = useState<unknown>();
   useEffect(() => {
     setData(undefined);
     const loadData = async () => {
@@ -31,12 +32,7 @@ export function Loader(props: { 'aria-label'?: string; error?: any; }) {
     <div className={style.loader} aria-label={props['aria-label']}>
       {!props || (!props.error && (
         <div className="center">
-          {/* patternfly spinner? <Spinner/> */}
-          <svg width="5%" height="5%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" className="lds-eclipse">
-            <path ng-attr-d="{{config.pathCmd}}" ng-attr-fill="{{config.color}}" stroke="none" d="M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50" fill="#eca611" transform="rotate(125.654 50 51)">
-              <animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 51;360 50 51" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform>
-            </path>
-          </svg>
+          <Spinner/>
         </div>
       ))}
       {props && props.error &&

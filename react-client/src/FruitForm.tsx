@@ -12,7 +12,7 @@ export default function FruitForm() {
         <Alert
           variant="danger"
           title={error}
-          action={<AlertActionCloseButton onClose={() => setError('')} />}
+          actionClose={<AlertActionCloseButton onClose={() => setError('')} />}
         />
       )}
       <h3>Add a fruit</h3>
